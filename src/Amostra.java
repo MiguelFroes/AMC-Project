@@ -1,17 +1,62 @@
 
-public class Amostra {
+class node{
+	int[] vector;
+	node next;
 	
-	public void add(int vector) {//recebe um vetor e adiciona-o à amostra
-		
+	public node(int[] vector, node next) {
+		this.vector=vector;
+		this.next=next;
+	}	
+}
+public class Amostra {
+	private node first;
+	private int dim;
+	private int[] domain;
+	
+	public Amostra(int[] domain) {//Construtor da amostra
+		this.domain=domain;
+		first=null;
+		dim=0;
+	}
+	
+	public int Domain(int n) {//Devolve o domínio do nó n
+		return domain[n];
+	}
+	
+	public void add(int[] vector) {//recebe um vetor e adiciona-o à amostra
+		node aux= new node(vector,first);
+		first=aux;
+		dim++;
 	}
 	
 	public int lenght() {//devolve o comprimento da amostra
+		return dim;
 		
 	}
 	
-	public int count() {/*recebe um vector de variáveis e um vector de valores e retorna o número de 
+	public int count(int[] var, int[] val) {/*recebe um vector de variáveis e um vector de valores e retorna o número de 
 							ocorrências desses valores para essas variáveis na amostra*/
-		
+		node runner=first;
+		int i=0, r=0;
+		boolean b;
+		while(runner!=null) {
+			b=true;
+			for(i=0;i<var.length;i++) {
+				b&=(runner.vector[var[i]]==val[i]);
+			}
+			if(b) r++;
+			runner=runner.next;
+		}
+		return r;	
+	}
+	
+	public int[] element(int x) {//devolve o vetor do nó x
+		int i;
+		node runner=first;
+		for(i=0;i<x;i++) {
+			runner=runner.next;
+		}
+		return runner.vector;	
 	}
 
 }
