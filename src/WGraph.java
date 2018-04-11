@@ -32,12 +32,17 @@ public class WGraph {
 					int[] Values3= {j,k};
 					int[] Valuesc= {k};
 					int[] Variablesc= {c};
-					w+=(A.count(Variables1, Values1)/A.lenght())*Math.log10(((A.count(Variables1, Values1)/A.lenght())*(A.count(Variablesc, Valuesc)/A.lenght())/((A.count(Variables3, Values3)/A.lenght())*(A.count(Variables2, Values2)/A.lenght()))));
+					int P1=A.count(Variables1, Values1)/A.lenght();
+					int P2=A.count(Variables2, Values2)/A.lenght();
+					int P3=A.count(Variables3, Values3)/A.lenght();
+					int Pc=A.count(Variablesc, Valuesc)/A.lenght();
+					w+=P1*Math.log10((P1*Pc)/(P3*P2));
 				}
 			}
 		}
 		return w;
 	}
+	
 	public void add_edge(int n1, int n2, int w) {//Adiciona uma ligação entre os nós com o peso w
 		Wmtx[n1][n2]=w;
 		Wmtx[n2][n1]=w;
