@@ -1,5 +1,5 @@
 
-public class WGraph {
+public class WGraph implements Interface_WGraph {
 	private int dim;
 	private int [][] Wmtx;
 	
@@ -57,7 +57,7 @@ public class WGraph {
 		return Wmtx[n1][n2]!=0;	
 	}
 	
-	public void MST(int n) {/*retorna a árvore geradora maximal (como Grafo orientado)
+	public DGraph MST(int n) {/*retorna a árvore geradora maximal (como Grafo orientado)
 							cuja raiz é n.*/
 		
 	}

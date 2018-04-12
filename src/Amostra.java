@@ -8,7 +8,7 @@ class node{
 		this.next=next;
 	}	
 }
-public class Amostra {
+public class Amostra implements Interface_Amostra{
 	private node first;
 	private int dim;
 	private int[] domain;
@@ -19,7 +19,7 @@ public class Amostra {
 		dim=0;
 	}
 	
-	public int Domain(int n) {//Devolve o domínio do nó n
+	public int Domain(int n) {//Devolve o domínio do nó n, ou seja, quantos valores é que cada variável do vetor do nó n pode tomar
 		return domain[n];
 	}
 	

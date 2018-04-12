@@ -1,13 +1,14 @@
 import java.util.LinkedList;
 
 
-public class DGraph {
+public class DGraph implements Interface_DGraph{
 	private int dim;
 	private int[][] Dmtx;
 	
-	public DGraph(int dim) {
+	public DGraph(int dim){ //Construtor de grafos orientados
 		this.dim=dim;
 		Dmtx= new int [dim][dim];
+		
 		
 	}
 
