@@ -1,4 +1,3 @@
-
 class node{
 	int[] vector;
 	node next;

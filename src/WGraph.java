@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 
 public class WGraph implements Interface_WGraph {
 	private int dim;
@@ -59,6 +60,24 @@ public class WGraph implements Interface_WGraph {
 	
 	public DGraph MST(int n) {/*retorna a árvore geradora maximal (como Grafo orientado)
 							cuja raiz é n.*/
-		
+		LinkedList<Integer> visited= new LinkedList<Integer>();
+		double w_max=0;
+		DGraph Rmtx= new DGraph(dim);
+		visited.add(n);
+		int i,j;
+		while(visited.size()!=dim) {
+			int i_max=0;
+			int j_max=0;
+			for(i=0;i<visited.size();i++) {
+				for(j=0;j<dim;j++) {
+					if(Wmtx[visited.get(i)][j]>w_max&&!visited.contains(j))
+						w_max=Wmtx[visited.get(i)][j];
+						i_max=visited.get(i);
+						j_max=j;
+				}
+			}
+		Rmtx.add_edge(i_max,j_max);		
+		}
+		return Rmtx;
 	}
 }
