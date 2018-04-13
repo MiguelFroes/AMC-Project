@@ -3,7 +3,7 @@ public interface Interface_Amostra {
 	
 	public void add(int[] vector);
 	
-	public int lenght();
+	public int length();
 	
 	public int count(int[] var, int[] val);
 	

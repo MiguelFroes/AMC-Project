@@ -32,10 +32,10 @@ public class WGraph implements Interface_WGraph {
 					int[] Values3= {j,k};
 					int[] Valuesc= {k};
 					int[] Variablesc= {c};
-					int P1=A.count(Variables1, Values1)/A.lenght();
-					int P2=A.count(Variables2, Values2)/A.lenght();
-					int P3=A.count(Variables3, Values3)/A.lenght();
-					int Pc=A.count(Variablesc, Valuesc)/A.lenght();
+					int P1=A.count(Variables1, Values1)/A.length();
+					int P2=A.count(Variables2, Values2)/A.length();
+					int P3=A.count(Variables3, Values3)/A.length();
+					int Pc=A.count(Variablesc, Valuesc)/A.length();
 					w+=P1*Math.log10((P1*Pc)/(P3*P2));
 				}
 			}
