@@ -29,7 +29,7 @@ public class Amostra implements Interface_Amostra{
 		dim++;
 	}
 	
-	public int lenght() {//devolve o comprimento da amostra
+	public int length() {//devolve o comprimento da amostra
 		return dim;
 		
 	}
