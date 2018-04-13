@@ -76,6 +76,7 @@ public class WGraph implements Interface_WGraph {
 						j_max=j;
 				}
 			}
+		visited.add(j_max);
 		Rmtx.add_edge(i_max,j_max);		
 		}
 		return Rmtx;
