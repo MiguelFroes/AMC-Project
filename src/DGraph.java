@@ -5,13 +5,14 @@ public class DGraph implements Interface_DGraph{
 	private int dim;
 	private int[][] Dmtx;
 	
-	public DGraph(int dim){ //Construtor de grafos orientados
+	public DGraph(int dim){//Construtor de grafos orientados
 		this.dim=dim;
 		Dmtx= new int [dim][dim];
-		
-		
 	}
-
+	
+	public int getDim() {//Getter da dimensão
+		return dim;
+	}
 	
 	public void add_edge(int n1, int n2) {//adiciona uma aresta entre os dois nós
 		Dmtx[n1][n2]=1;
@@ -31,10 +32,5 @@ public class DGraph implements Interface_DGraph{
 			if (edgeQ(j,n))//Bloquei a linha e procura se o nó j origina o nó n
 				lr.add(j);
 		return lr;		
-		
-		
 	}
-	
-	
-
 }

@@ -29,8 +29,7 @@ public class Amostra implements Interface_Amostra{
 	}
 	
 	public int length() {//devolve o comprimento da amostra
-		return dim;
-		
+		return dim;	
 	}
 	
 	public int count(int[] var, int[] val) {/*recebe um vector de variáveis e um vector de valores e retorna o número de 
