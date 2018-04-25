@@ -55,7 +55,23 @@ public class BN implements Interface_BN{
 	}
 		
 	public double prob(int[] vector) {//Devolve a probabilidade do vector na rede de bayes criada
-		
-		return 0.2;//ignorar isto é só para ele não se chatear e estar sempre a dar erro
+		int c=vector[vector.length-1];
+		int xi,pi,i;
+		double res = 0;
+		for(i=0;i<dg.getDim();i++) {
+			xi=vector[i];
+			LinkedList<Integer> pais=dg.parents(xi);
+			if(pais.size()==1) {
+				pi=dg.parents(xi).getFirst();
+				res+=theta[i][xi][c+(pi*2)];//como saber o domínio de c sem usar funções da amostra???
+			}
+			if(pais.size()==0) {
+				res+=theta[i][xi][c];
+			}
+		}
+		int ci=vector[i];
+		res+=theta[i][ci][0];
+		return Math.pow(10, res);
 	}
+
 }
