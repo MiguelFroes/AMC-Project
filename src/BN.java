@@ -63,7 +63,7 @@ public class BN implements Interface_BN{
 			LinkedList<Integer> pais=dg.parents(xi);
 			if(pais.size()==1) {
 				pi=dg.parents(xi).getFirst();
-				res+=theta[i][xi][c+(pi*2)];//como saber o domínio de c sem usar funções da amostra???
+				res+=theta[i][xi][c+(pi*(theta[dg.getDim()].length))];
 			}
 			if(pais.size()==0) {
 				res+=theta[i][xi][c];
