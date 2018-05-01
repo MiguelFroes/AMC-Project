@@ -24,7 +24,8 @@ public class BN implements Interface_BN{
 							int[] Val1={i,j,k};
 							int[] Var2={p,c};
 							int[] Val2={j,k};
-							mt[xi][k+(j*cDomain)]=Math.log10(A.count(Var1,Val1)+S)-Math.log10(A.count(Var2,Val2)+S*xDomain);
+							mt[xi][k+(j*cDomain)]=Math.log10(A.count(Var1,Val1)+S)-Math.log10(A.count(Var2,Val2)+S*xDomain); 
+							//FROES PORQUE É QUE É A POSIÇÃO XI EM VEZ DE I? Não deveria ser mt[i][k+(j*cDomain)] e depois esta matriz mt coresponde ao theta[xi]?
 						}
 					}
 				}
@@ -39,7 +40,7 @@ public class BN implements Interface_BN{
 						int[] Val3={i,ci};
 						int[] Var4={c};
 						int[] Val4={ci};
-						mt[xi][ci]=Math.log10(A.count(Var3,Val3)+S)-Math.log10(A.count(Var4,Val4)+S*xDomain);
+						mt[xi][ci]=Math.log10(A.count(Var3,Val3)+S)-Math.log10(A.count(Var4,Val4)+S*xDomain); //Mesma pergunta entre xi e i
 					}
 				}
 				theta[xi]=mt;
