@@ -22,17 +22,17 @@ public class Amostra implements Interface_Amostra{
 		return domain[n];
 	}
 	
-	public void add(int[] vector) {//recebe um vetor e adiciona-o à amostra
+	public void add(int[] vector) {//Recebe um vetor e adiciona-o à amostra
 		node aux= new node(vector,first);
 		first=aux;
 		dim++;
 	}
 	
-	public int length() {//devolve o comprimento da amostra
+	public int length() {//Devolve o comprimento da amostra
 		return dim;	
 	}
 	
-	public int count(int[] var, int[] val) {/*recebe um vector de variáveis e um vector de valores e retorna o número de 
+	public int count(int[] var, int[] val) {/*Recebe um vector de variáveis e um vector de valores e retorna o número de 
 							ocorrências desses valores para essas variáveis na amostra*/
 		node runner=first;
 		int i=0, r=0;
@@ -48,7 +48,7 @@ public class Amostra implements Interface_Amostra{
 		return r;	
 	}
 	
-	public int[] element(int x) {//devolve o vetor do nó x
+	public int[] element(int x) {//Devolve o vetor do nó x
 		int i;
 		node runner=first;
 		for(i=0;i<x;i++) {

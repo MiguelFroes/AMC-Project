@@ -4,7 +4,7 @@ public class WGraph implements Interface_WGraph {
 	private int dim;
 	private int [][] Wmtx;
 	
-	public WGraph(int dim) {//Construtor do grafo pesado, ATENÇÃO os grafos pesados são matrizes simétricas
+	public WGraph(int dim) {//Construtor do grafo pesado. Note-se que os grafos são representados por matrizes simétricas.
 		this.dim=dim;
 		Wmtx= new int [dim][dim];
 	}
@@ -23,19 +23,19 @@ public class WGraph implements Interface_WGraph {
 		return Wmtx[n1][n2]!=0;	
 	}
 	
-	public DGraph MST(int n) {/*retorna a árvore geradora maximal (como Grafo orientado)
+	public DGraph MST(int n) {/*Retorna a árvore geradora maximal (como Grafo orientado)
 							cuja raiz é n.*/
 		LinkedList<Integer> visited= new LinkedList<Integer>();
 		double w_max=0;
-		DGraph Rmtx= new DGraph(dim);
+		DGraph Rmtx= new DGraph(dim); 
 		visited.add(n);
 		int i,j;
-		while(visited.size()!=dim) {
+		while(visited.size()!=dim) { 
 			int i_max=0;
 			int j_max=0;
-			for(i=0;i<visited.size();i++) {
+			for(i=0;i<visited.size();i++) { 
 				for(j=0;j<dim;j++) {
-					if(Wmtx[visited.get(i)][j]>w_max&&!visited.contains(j))
+					if(Wmtx[visited.get(i)][j]>w_max&&!visited.contains(j)) 
 						w_max=Wmtx[visited.get(i)][j];
 						i_max=visited.get(i);
 						j_max=j;
