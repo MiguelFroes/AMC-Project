@@ -24,7 +24,7 @@ public class BN implements Interface_BN{
 							int[] Val1={i,j,k};
 							int[] Var2={p,c};
 							int[] Val2={j,k};
-							mt[xi][k+(j*cDomain)]=Math.log10(A.count(Var1,Val1)+S)-Math.log10(A.count(Var2,Val2)+S*xDomain);
+							mt[i][k+(j*cDomain)]=Math.log10(A.count(Var1,Val1)+S)-Math.log10(A.count(Var2,Val2)+S*xDomain);
 						}
 					}
 				}
@@ -39,7 +39,7 @@ public class BN implements Interface_BN{
 						int[] Val3={i,ci};
 						int[] Var4={c};
 						int[] Val4={ci};
-						mt[xi][ci]=Math.log10(A.count(Var3,Val3)+S)-Math.log10(A.count(Var4,Val4)+S*xDomain);
+						mt[i][ci]=Math.log10(A.count(Var3,Val3)+S)-Math.log10(A.count(Var4,Val4)+S*xDomain);
 					}
 				}
 				theta[xi]=mt;
