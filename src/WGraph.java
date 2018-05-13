@@ -26,7 +26,7 @@ public class WGraph implements Interface_WGraph {
 	public DGraph MST(int n) {/*Retorna a árvore geradora maximal (como Grafo orientado)
 							cuja raiz é n.*/
 		LinkedList<Integer> visited= new LinkedList<Integer>();
-		double w_max=0;
+		double w_max=-1;//descobir que os pesos podem ser 0 por isso assim não dá erro
 		DGraph Rmtx= new DGraph(dim); 
 		visited.add(n);
 		int i,j;
