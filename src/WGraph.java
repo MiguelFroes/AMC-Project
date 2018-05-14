@@ -36,21 +36,22 @@ public class WGraph implements Interface_WGraph {
 		LinkedList<Integer> visited= new LinkedList<Integer>();
 		double w_max=-1;//descobir que os pesos podem ser 0 por isso assim não dá erro
 		DGraph Rmtx= new DGraph(dim); 
-		visited.add(n);
-		int i,j;
+		visited.addLast(n);
 		while(visited.size()!=dim) { 
 			int i_max=0;
 			int j_max=0;
-			for(i=0;i<visited.size();i++) { 
-				for(j=0;j<dim;j++) {
-					if(Wmtx[visited.get(i)][j]>w_max&&!visited.contains(j)) 
+			for(int i=0;i<visited.size();i++) { 
+				for(int j=0;j<Wmtx.length;j++) {
+					if(Wmtx[visited.get(i)][j]>w_max&&!(visited.contains(j))) { 
 						w_max=Wmtx[visited.get(i)][j];
 						i_max=visited.get(i);
 						j_max=j;
+					}
 				}
 			}
-		visited.add(j_max);
-		Rmtx.add_edge(i_max,j_max);		
+			visited.addLast(j_max);
+			Rmtx.add_edge(i_max,j_max);	
+			
 		}
 		return Rmtx;
 	}

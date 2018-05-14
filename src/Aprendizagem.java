@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+
 import java.awt.FileDialog;
 
 import javax.swing.JFrame;
@@ -155,7 +156,7 @@ public class Aprendizagem {
 								matrix[i][j]=Integer.parseInt(line[j]);
 							}
 						}
-					//System.out.println(Arrays.deepToString(matrix));
+					System.out.println(Arrays.deepToString(matrix));
 					br.close();
 					fr.close();
 				}catch(Exception e1) {
