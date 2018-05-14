@@ -1,6 +1,11 @@
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class BN implements Interface_BN{
+public class BN implements Interface_BN,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected DGraph dg;//grafo orientado resultante do MST que necessita estar guardado
 	protected double[][][] theta;//fun��o de probabilade 
 	
@@ -24,7 +29,7 @@ public class BN implements Interface_BN{
 							int[] Val1={i,j,k};
 							int[] Var2={p,c};
 							int[] Val2={j,k};
-							mt[i][k+(j*cDomain)]=Math.log10(A.count(Var1,Val1)+S)-Math.log10(A.count(Var2,Val2)+S*xDomain); 
+							mt[i][k+(j*cDomain)]=Math.log10((double)A.count(Var1,Val1)+S)-Math.log10((double)A.count(Var2,Val2)+S*xDomain); 
 							
 						}
 					}
@@ -32,15 +37,14 @@ public class BN implements Interface_BN{
 				theta[xi]=mt;
 			}
 			if(pi.size()==0) {
-				int prodDomain=cDomain;
-				double[][] mt=new double[xDomain][prodDomain];
+				double[][] mt=new double[xDomain][cDomain];
 				for(int i=0;i<xDomain;i++) {
 					for(int ci=0;ci<cDomain;ci++) {
 						int[] Var3={xi,c};
 						int[] Val3={i,ci};
 						int[] Var4={c};
 						int[] Val4={ci};
-						mt[i][ci]=Math.log10(A.count(Var3,Val3)+S)-Math.log10(A.count(Var4,Val4)+S*xDomain); 
+						mt[i][ci]=Math.log10((double)A.count(Var3,Val3)+S)-Math.log10((double)A.count(Var4,Val4)+S*xDomain); 
 					}
 				}
 				theta[xi]=mt;
@@ -50,7 +54,7 @@ public class BN implements Interface_BN{
 		for(int cj=0;cj<cDomain;cj++) {
 			int[] Varc={c};
 			int[] Valc={cj};
-			mt[cj][0]=Math.log10(A.count(Varc,Valc)+S)-Math.log10(A.length()+S*cDomain);
+			mt[cj][0]=Math.log10((double)A.count(Varc,Valc)+S)-Math.log10((double)A.length()+S*cDomain);
 		}
 		theta[xi]=mt;
 	}

@@ -2,14 +2,14 @@ import java.util.LinkedList;
 
 public class WGraph implements Interface_WGraph {
 	private int dim;
-	private int [][] Wmtx;
+	private double[][] Wmtx;
 	
 	public WGraph(int dim) {//Construtor do grafo pesado. Note-se que os grafos são representados por matrizes simétricas.
 		this.dim=dim;
-		Wmtx= new int [dim][dim];
+		Wmtx= new double[dim][dim];
 	}
 	
-	public void add_edge(int n1, int n2, int w) {//Adiciona uma ligação entre os nós com o peso w
+	public void add_edge(int n1, int n2, double w) {//Adiciona uma ligação entre os nós com o peso w
 		Wmtx[n1][n2]=w;
 		Wmtx[n2][n1]=w;
 	}
