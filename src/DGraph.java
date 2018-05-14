@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 
 
@@ -10,6 +11,13 @@ public class DGraph implements Interface_DGraph{
 		Dmtx= new int [dim][dim];
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "DGraph [dim=" + dim + ", Dmtx=" + Arrays.deepToString(Dmtx) + "]";
+	}
+
+
 	public int getDim() {//Getter da dimensão
 		return dim;
 	}

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class WGraph implements Interface_WGraph {
@@ -9,6 +10,13 @@ public class WGraph implements Interface_WGraph {
 		Wmtx= new double[dim][dim];
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "WGraph [dim=" + dim + ", Wmtx=" + Arrays.deepToString(Wmtx) + "]";
+	}
+
+
 	public void add_edge(int n1, int n2, double w) {//Adiciona uma ligação entre os nós com o peso w
 		Wmtx[n1][n2]=w;
 		Wmtx[n2][n1]=w;

@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class Aprendizagem {
@@ -30,6 +31,10 @@ public class Aprendizagem {
 	private boolean Thyroid;
 	private String parameter;
 	private BN bn;
+	private int[][] matrix;
+	private Amostra am;
+	private WGraph wg;
+	private DGraph mst;
 
 	/**
 	 * Launch the application.
@@ -134,8 +139,8 @@ public class Aprendizagem {
 				}
 				
 //Criação da amostra
-				Amostra am;
-				int[][] matrix=new int[numblines][domains.length];
+				
+				matrix=new int[numblines][domains.length];
 				
 				try {
 					FileReader fr=new FileReader(database);
@@ -150,6 +155,7 @@ public class Aprendizagem {
 								matrix[i][j]=Integer.parseInt(line[j]);
 							}
 						}
+					//System.out.println(Arrays.deepToString(matrix));
 					br.close();
 					fr.close();
 				}catch(Exception e1) {
@@ -161,18 +167,21 @@ public class Aprendizagem {
 				for(int i=0;i<matrix.length;i++) {
 					am.add(matrix[i]);
 				}
+				System.out.println(am);
 				
 //Criação do Grafo Pesado
-				WGraph wg=new WGraph(domains.length-1);
+				wg=new WGraph(domains.length-1);
 					for(int i=0;i<domains.length-1;i++) {
 						for(int j=0;j<domains.length-1;j++) {
 							double w=Pesos.weight(i, j, am);
 							wg.add_edge(i,j,w);
 						}
 					}
+				System.out.println(wg);
 
 //Criação da MST
-				DGraph mst=wg.MST(0);
+				mst=wg.MST(0);
+				System.out.println(mst);//está a dar erro na criação do MST!!! temos de ver outra vez a função que isto está a dar mal
 				
 //Criação da rede de Bayes
 				

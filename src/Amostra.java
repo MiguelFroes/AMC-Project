@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class node{
 	int[] vector;
 	node next;
@@ -5,12 +7,20 @@ class node{
 	public node(int[] vector, node next) {
 		this.vector=vector;
 		this.next=next;
+	}
+
+	@Override
+	public String toString() {
+		return "node [vector=" + Arrays.toString(vector) + ", next=" + next + "]";
 	}	
+	
 }
+
 public class Amostra implements Interface_Amostra{
 	private node first;
 	private int dim;
 	private int[] domain;
+	
 	
 	public Amostra(int[] domain) {//Construtor da amostra
 		this.domain=domain;
@@ -18,6 +28,13 @@ public class Amostra implements Interface_Amostra{
 		dim=0;
 	}
 	
+	@Override
+	public String toString() {
+		return "Amostra [first=" + first + ", dim=" + dim + ", domain=" + Arrays.toString(domain) + "]";
+	}
+
+
+
 	public int Domain(int n) {//Devolve o domínio do nó n, ou seja, quantos valores é que cada variável do vetor do nó n pode tomar
 		return domain[n];
 	}
