@@ -37,6 +37,7 @@ public class Amostra implements Interface_Amostra{
 
 	public int Domain(int n) {//Devolve o domínio do nó n, ou seja, quantos valores é que cada variável do vetor do nó n pode tomar
 		return domain[n];
+		
 	}
 	
 	public void add(int[] vector) {//Recebe um vetor e adiciona-o à amostra
@@ -75,3 +76,4 @@ public class Amostra implements Interface_Amostra{
 	}
 
 }
+

@@ -1,8 +1,13 @@
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 
 
-public class DGraph implements Interface_DGraph{
+public class DGraph implements Interface_DGraph,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int dim;
 	private int[][] Dmtx;
 	

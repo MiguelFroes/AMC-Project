@@ -36,9 +36,11 @@ public class WGraph implements Interface_WGraph {
 	public DGraph MST(int n) {/*Retorna a árvore geradora maximal (como Grafo orientado)
 							cuja raiz é n.*/
 		LinkedList<Integer> visited= new LinkedList<Integer>();
+
 		DGraph Rmtx= new DGraph(dim); 
 		visited.addFirst(n);
 		while((visited.size())!=dim) { 
+
 			int i_max=0;
 			int j_max=0;
 			double w_max=-1.0;

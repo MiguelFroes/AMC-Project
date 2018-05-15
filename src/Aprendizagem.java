@@ -37,6 +37,7 @@ public class Aprendizagem {
 	private WGraph wg;
 	private DGraph mst;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -98,7 +99,7 @@ public class Aprendizagem {
 		JButton btnTeachMe = new JButton("Teach Me");
 		btnTeachMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int[] domains=null;
+				int[] domains=null; 
 				int numblines=0;
 			
 //Primeira leitura que percorre o ficheiro e forma o vetor de domínios e descobre as dimensões da matriz
@@ -141,7 +142,9 @@ public class Aprendizagem {
 				
 //Criação da amostra
 				
+
 				matrix=new int[numblines][domains.length];
+
 				
 				try {
 					FileReader fr=new FileReader(database);
@@ -189,7 +192,7 @@ public class Aprendizagem {
 //Criação da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
-						
+			
 			}	
 		});
 		btnTeachMe.setBounds(21, 116, 141, 35);
@@ -269,7 +272,7 @@ public class Aprendizagem {
 				Thyroid=true;
 			}
 		});
-		
+		 
 		ButtonGroup group=new ButtonGroup();
 		group.add(rdbtnCancer);
 		group.add(rdbtnDiabetes);
