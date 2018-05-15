@@ -63,25 +63,44 @@ public class BN implements Interface_BN,Serializable{
 		theta.add(mt);
 		
 	}
-		
-	public double prob(int[] vector) {//Devolve a probabilidade do vector na rede de bayes criada
-		int c=vector[vector.length-1];
-		int xi,pi,i;
-		double res=0;
-		for(i=0;i<dg.getDim();i++) {
-			xi=vector[i];
-			LinkedList<Integer> pais=dg.parents(xi);
-			if(pais.size()==1) {
-				pi=dg.parents(xi).getFirst();
-				res+=theta.get(i)[xi][c+(pi*(theta.get(dg.getDim()).length))];
-			}
-			if(pais.size()==0) {
-				res+=theta.get(i)[xi][c];
+	
+	public LinkedList<Double> prob(int[] vector) {
+		int cDomain=theta.getLast().length;
+		int c;
+		double[]res=new double[cDomain];
+		LinkedList<Double> res_final=new LinkedList<Double>();
+		double soma=0;
+		double max=0;
+		double indice=0;
+		for(c=0;c<cDomain;c++) {//Ciclo que percorre o domínio da classe
+			int xi,pi;
+			double r=0;
+			for(int i=0;i<dg.getDim();i++) {//Ciclo que percorre as variáveis
+				xi=vector[i];
+				LinkedList<Integer> pais=dg.parents(xi);
+				if(pais.size()==1) {
+					pi=dg.parents(xi).getFirst();
+					r+=theta.get(i)[xi][c+(pi*cDomain)];
+				}
+				if(pais.size()==0) {
+					r+=theta.get(i)[xi][c];
+				}
+			} r+=theta.getLast()[c][0];
+			res[c]=Math.pow(10, r);
+		}
+		for(int i=0;i<res.length;i++) {//Ciclo que soma todos os valores de probabilidade das classes
+			soma+=res[i];
+		}
+		for(int pos=0;pos<res.length;pos++) {//Ciclo que escolhe a classe com maior probabilidade
+			if(res[pos]>max) {
+				max=res[pos];
+				indice=pos;
 			}
 		}
-		int ci=vector[vector.length-1];
-		res+=theta.getLast()[ci][0];
-		return Math.pow(10, res);
+		res_final.addFirst(indice);
+		res_final.addLast((max/soma)*100);//Normalização da probabilidade e transformação em percentagem
+		return res_final;
 	}
+	
 
 }
