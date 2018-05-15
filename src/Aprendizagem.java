@@ -192,6 +192,9 @@ public class Aprendizagem {
 //Criação da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
+				
+				int[] v= {1,0,2,3,2,0,1,2,1,1,1};
+				System.out.println(bn.prob(v));
 			
 			}	
 		});

@@ -12,16 +12,22 @@ public class Teste {
 		am.add(values1);
 		am.add(values0);
 		System.out.println(am);
-		WGraph wm=new WGraph(4);
-		wm.add_edge(0, 1, 1);
-		wm.add_edge(0, 2, 3);
-		wm.add_edge(1, 2, 2);
-		wm.add_edge(1, 3, 3);
+		WGraph wg=new WGraph(dom.length-1);
+		for(int i=0;i<dom.length-1;i++) {
+			for(int j=0;j<dom.length-1;j++) {
+				if(i!=j) {
+				double w=Pesos.weight(i, j, am);
+				wg.add_edge(i,j,w);
+				}
+			}
+		}
 		//wm.add_edge(3, 2, 5);
 		//System.out.println(Pesos.weight(0,1,am));
-		DGraph mst = wm.MST(0);
-		//System.out.println(wm.MST(0));
+		DGraph mst = wg.MST(0);
+		System.out.println(wg.MST(0));
 		BN bn = new BN(mst,am,0.5);
+		int[] vector= {1,0,0};
+		System.out.println(bn.prob(vector));
 		//System.out.println(bn);
 	}
 

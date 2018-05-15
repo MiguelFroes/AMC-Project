@@ -8,7 +8,7 @@ public class BN implements Interface_BN,Serializable{
 	private static final long serialVersionUID = 1L;
 	protected DGraph dg;//grafo orientado resultante do MST que necessita estar guardado
 	protected LinkedList <Double[][]> theta;//funï¿½ï¿½o de probabilade 
-	protected Double [][][] thetaA; //Isto foi so para ele por agora nao me chatear com a função de probabilidades que ia buscar posições
+	//protected Double [][][] thetaA; //Isto foi so para ele por agora nao me chatear com a função de probabilidades que ia buscar posições
 	
 	public BN(DGraph D, Amostra A, double S) {
 		dg=D;
@@ -67,20 +67,20 @@ public class BN implements Interface_BN,Serializable{
 	public double prob(int[] vector) {//Devolve a probabilidade do vector na rede de bayes criada
 		int c=vector[vector.length-1];
 		int xi,pi,i;
-		double res = 0;
+		double res=0;
 		for(i=0;i<dg.getDim();i++) {
 			xi=vector[i];
 			LinkedList<Integer> pais=dg.parents(xi);
 			if(pais.size()==1) {
 				pi=dg.parents(xi).getFirst();
-				res+=thetaA[i][xi][c+(pi*(thetaA[dg.getDim()].length))];
+				res+=theta.get(i)[xi][c+(pi*(theta.get(dg.getDim()).length))];
 			}
 			if(pais.size()==0) {
-				res+=thetaA[i][xi][c];
+				res+=theta.get(i)[xi][c];
 			}
 		}
-		int ci=vector[i];
-		res+=thetaA[i][ci][0];
+		int ci=vector[vector.length-1];
+		res+=theta.getLast()[ci][0];
 		return Math.pow(10, res);
 	}
 
