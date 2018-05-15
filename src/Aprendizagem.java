@@ -1,15 +1,19 @@
+import java.awt.Color;
+
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import java.awt.FileDialog;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
-
-
-
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -66,11 +70,24 @@ public class Aprendizagem {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 530, 456);
+		frame.getContentPane().setBackground(new Color(240, 255, 255));
+		frame.setBounds(100, 100, 501, 351);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnChooseFile = new JButton("Choose Me");
+		JLabel lblApp = new JLabel("LEARNING APPLICATION");
+		lblApp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblApp.setForeground(new Color(0, 128, 128));
+		lblApp.setFont(new Font("Adobe Gothic Std", Font.BOLD, 18));
+		lblApp.setBounds(32, 10, 410, 37);
+		frame.getContentPane().add(lblApp);
+		
+		JButton btnChooseFile = new JButton("CHOOSE ME");
+		btnChooseFile.setForeground(new Color(0, 128, 128));
+		btnChooseFile.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		btnChooseFile.setBackground(new Color(255, 255, 255));
+		btnChooseFile.setBorder(new LineBorder(new Color(95, 158, 160), 2, true));
+		btnChooseFile.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnChooseFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FileDialog fd = new FileDialog(frame, "Select a file", FileDialog.LOAD);
@@ -88,21 +105,26 @@ public class Aprendizagem {
 				
 			}
 		});
-		btnChooseFile.setBounds(21, 31, 141, 35);
+		btnChooseFile.setBounds(24, 56, 141, 47);
 		frame.getContentPane().add(btnChooseFile);
 		
 		textField = new JTextField();
-		textField.setBounds(169, 32, 186, 32);
+		textField.setBounds(189, 56, 261, 47);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnTeachMe = new JButton("Teach Me");
+		JButton btnTeachMe = new JButton("TEACH ME");
+		btnTeachMe.setForeground(new Color(0, 128, 128));
+		btnTeachMe.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		btnTeachMe.setBackground(new Color(255, 255, 255));
+		btnTeachMe.setBorder(new LineBorder(new Color(95, 158, 160), 2, true));
+		btnTeachMe.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnTeachMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int[] domains=null; 
 				int numblines=0;
 			
-//Primeira leitura que percorre o ficheiro e forma o vetor de domínios e descobre as dimensões da matriz
+//Primeira leitura que percorre o ficheiro e forma o vetor de domÃŒnios e descobre as dimensões da matriz
 
 				try { 
 					
@@ -159,7 +181,7 @@ public class Aprendizagem {
 								matrix[i][j]=Integer.parseInt(line[j]);
 							}
 						}
-					System.out.println(Arrays.deepToString(matrix));
+					//System.out.println(Arrays.deepToString(matrix));
 					br.close();
 					fr.close();
 				}catch(Exception e1) {
@@ -171,7 +193,7 @@ public class Aprendizagem {
 				for(int i=0;i<matrix.length;i++) {
 					am.add(matrix[i]);
 				}
-				System.out.println(am);
+				//System.out.println(am);
 				
 //Criação do Grafo Pesado
 				wg=new WGraph(domains.length-1);
@@ -183,26 +205,31 @@ public class Aprendizagem {
 							}
 						}
 					}
-				System.out.println(wg);
+				//System.out.println(wg);
 
 //Criação da MST
 				mst=wg.MST(0);
-				System.out.println(mst);//está a dar erro na criação do MST!!! temos de ver outra vez a função que isto está a dar mal
+				//System.out.println(mst);
 				
 //Criação da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
 				
 				//int[] v= {1,0,2,3,2,0,1,2,1,1};
-				int[] v= {0,0,0,0,0,0,0,1,0,0};
-				System.out.println(bn.prob(v));
+				//int[] v= {0,0,0,0,0,0,0,1,0,0};
+				//System.out.println(bn.prob(v));
 			
 			}	
 		});
-		btnTeachMe.setBounds(21, 116, 141, 35);
+		btnTeachMe.setBounds(32, 169, 410, 47);
 		frame.getContentPane().add(btnTeachMe);
 		
-		JButton btnSave = new JButton("Save Me");
+		JButton btnSave = new JButton("SAVE ME");
+		btnSave.setForeground(new Color(0, 128, 128));
+		btnSave.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+		btnSave.setBackground(new Color(255, 255, 255));
+		btnSave.setBorder(new LineBorder(new Color(95, 158, 160), 2, true));
+		btnSave.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(Cancer) {
@@ -238,11 +265,11 @@ public class Aprendizagem {
 				
 			}
 		});
-		btnSave.setBounds(21, 189, 141, 35);
+		btnSave.setBounds(167, 228, 141, 44);
 		frame.getContentPane().add(btnSave);
 		
 		JRadioButton rdbtnCancer = new JRadioButton("Cancer");
-		rdbtnCancer.setBounds(259, 116, 201, 35);
+		rdbtnCancer.setBounds(16, 115, 91, 35);
 		frame.getContentPane().add(rdbtnCancer);
 		rdbtnCancer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,7 +278,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnDiabetes = new JRadioButton("Diabetes");
-		rdbtnDiabetes.setBounds(259, 167, 201, 35);
+		rdbtnDiabetes.setBounds(123, 115, 100, 35);
 		frame.getContentPane().add(rdbtnDiabetes);
 		rdbtnDiabetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -260,7 +287,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnHepatitis = new JRadioButton("Hepatitis");
-		rdbtnHepatitis.setBounds(259, 215, 201, 35);
+		rdbtnHepatitis.setBounds(239, 115, 111, 35);
 		frame.getContentPane().add(rdbtnHepatitis);
 		rdbtnHepatitis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -269,7 +296,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnThyroid= new JRadioButton("Thyroid");
-		rdbtnThyroid.setBounds(259, 263, 201, 35);
+		rdbtnThyroid.setBounds(366, 115, 91, 35);
 		frame.getContentPane().add(rdbtnThyroid);
 		rdbtnThyroid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
