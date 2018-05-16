@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.FileDialog;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ public class Classificador {
 
 	private JFrame frame;
 	private JTextField textField;
+	private String database;
 
 	/**
 	 * Launch the application.
@@ -61,7 +63,7 @@ public class Classificador {
 		
 		JLabel lblClickBelowTo = new JLabel("Insert below your pacient's data:");
 		lblClickBelowTo.setFont(new Font("Dialog", Font.PLAIN, 23));
-		lblClickBelowTo.setBounds(21, 277, 365, 83);
+		lblClickBelowTo.setBounds(21, 307, 333, 53);
 		frame.getContentPane().add(lblClickBelowTo);
 		
 		JTextArea textArea = new JTextArea();
@@ -87,17 +89,30 @@ public class Classificador {
 		frame.getContentPane().add(btnclassify);
 		
 		JButton btnload = new JButton("LOAD");
-		btnload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnload.setForeground(new Color(0, 128, 128));
 		btnload.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
 		btnload.setBackground(new Color(255, 255, 255));
 		btnload.setBorder(new LineBorder(new Color(95, 158, 160), 2, true));
 		btnload.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FileDialog fd = new FileDialog(frame, "Select a file", FileDialog.LOAD);
+				frame.getContentPane().setLayout(null);
+				fd.setDirectory("C:\\");
+				fd.setFile("*.BN");
+				fd.setVisible(true);
+				String filename = fd.getFile();
+				if (filename == null)
+					System.out.println("Cancelled");
+				else 
+					System.out.println("File selected: " + filename);
+				database = fd.getDirectory()+filename;
+				textField.setText(filename);
+				
+			}
+		});
 		btnload.setBounds(21, 155, 184, 123);
-		frame.getContentPane().add(btnload);
+		frame.getContentPane().add(btnload);		
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 25));
