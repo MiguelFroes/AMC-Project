@@ -8,15 +8,15 @@ public class BN implements Interface_BN,Serializable{
 	private static final long serialVersionUID = 1L;
 	protected DGraph dg;//grafo orientado resultante do MST que necessita estar guardado
 	protected LinkedList <Double[][]> theta;//funï¿½ï¿½o de probabilade 
-	//protected Double [][][] thetaA; //Isto foi so para ele por agora nao me chatear com a função de probabilidades que ia buscar posições
 	
 	public BN(DGraph D, Amostra A, double S) {
 		dg=D;
 		int xi;
 		int c=A.element(0).length-1;
 		int cDomain=A.Domain(c);
+		//theta= new Double[D.getDim()+1][][];
 		theta= new LinkedList<Double[][]>(); 
-		for(xi=0;xi<=D.getDim()-1;xi++) { //Isto é def e nao funciona com o menor mas com o menor ou igual e -1 funciona, aceitei
+		for(xi=0;xi<D.getDim();xi++) { //Isto é def e nao funciona com o menor mas com o menor ou igual e -1 funciona, aceitei
 			int xDomain=A.Domain(xi);
 			LinkedList<Integer> pi=D.parents(xi);
 			if(pi.size()==1) {
@@ -32,11 +32,10 @@ public class BN implements Interface_BN,Serializable{
 							int[] Var2={p,c};
 							int[] Val2={j,k};
 							mt[i][k+(j*cDomain)]=Math.log10((double)A.count(Var1,Val1)+S)-Math.log10((double)A.count(Var2,Val2)+S*xDomain); 
-							
 						}
 					}
 				}
-				theta.add(mt);
+				theta.addLast(mt);
 				
 			}
 			if(pi.size()==0) {
@@ -50,7 +49,7 @@ public class BN implements Interface_BN,Serializable{
 						mt[i][ci]=Math.log10((double)A.count(Var3,Val3)+S)-Math.log10((double)A.count(Var4,Val4)+S*xDomain); 
 					}
 				}
-				theta.add(mt);
+				theta.addLast(mt);
 				
 			}
 		}
@@ -60,7 +59,7 @@ public class BN implements Interface_BN,Serializable{
 			int[] Valc={cj};
 			mt[cj][0]=Math.log10((double)A.count(Varc,Valc)+S)-Math.log10((double)A.length()+S*cDomain);
 		}
-		theta.add(mt);
+		theta.addLast(mt);
 		
 	}
 	
@@ -73,19 +72,21 @@ public class BN implements Interface_BN,Serializable{
 		double max=0;
 		double indice=0;
 		for(c=0;c<cDomain;c++) {//Ciclo que percorre o domínio da classe
-			int xi,pi;
+			int xi,pi,pj,i;
 			double r=0;
-			for(int i=0;i<dg.getDim();i++) {//Ciclo que percorre as variáveis
+			for(i=0;i<dg.getDim();i++) {//Ciclo que percorre as variáveis
 				xi=vector[i];
-				LinkedList<Integer> pais=dg.parents(xi);
+				LinkedList<Integer> pais=dg.parents(i);
 				if(pais.size()==1) {
-					pi=dg.parents(xi).getFirst();
-					r+=theta.get(i)[xi][c+(pi*cDomain)];
+					pi=dg.parents(i).getFirst();
+					pj=vector[pi];
+					r+=theta.get(i)[xi][c+(pj*cDomain)];
 				}
 				if(pais.size()==0) {
 					r+=theta.get(i)[xi][c];
 				}
-			} r+=theta.getLast()[c][0];
+			}
+			r+=theta.getLast()[c][0];
 			res[c]=Math.pow(10, r);
 		}
 		for(int i=0;i<res.length;i++) {//Ciclo que soma todos os valores de probabilidade das classes

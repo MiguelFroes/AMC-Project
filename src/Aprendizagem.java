@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+
 import java.awt.Component;
 import java.awt.EventQueue;
 
@@ -22,7 +23,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class Aprendizagem {
