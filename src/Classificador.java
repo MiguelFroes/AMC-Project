@@ -68,13 +68,13 @@ public class Classificador {
 		JLabel lblClassificadorTanE = new JLabel("CLASSIFICATION APPLICATION");
 		lblClassificadorTanE.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClassificadorTanE.setForeground(new Color(0, 128, 128));
-		lblClassificadorTanE.setFont(new Font("Dialog", Font.BOLD, 26));
-		lblClassificadorTanE.setBounds(302, 6, 483, 91);
+		lblClassificadorTanE.setFont(new Font("Adobe Gothic Std", Font.BOLD, 26));
+		lblClassificadorTanE.setBounds(302, 21, 483, 76);
 		frame.getContentPane().add(lblClassificadorTanE);
 		
 		JLabel lblClickBelowTo = new JLabel("Insert your pacient's data below:");
-		lblClickBelowTo.setFont(new Font("Dialog", Font.PLAIN, 23));
-		lblClickBelowTo.setBounds(21, 254, 387, 37);
+		lblClickBelowTo.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 23));
+		lblClickBelowTo.setBounds(21, 254, 387, 53);
 		frame.getContentPane().add(lblClickBelowTo);
 		
 		JTextField textParameters = new JTextField();
@@ -177,33 +177,33 @@ public class Classificador {
 		frame.getContentPane().add(btnclassify);
 		
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Please insert the data as the following example: 0,1,1,1,1,1,1 (according to the number of parameters of the disease)");
-		lblNewJgoodiesLabel.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 13));
-		lblNewJgoodiesLabel.setBounds(21, 291, 771, 16);
+		lblNewJgoodiesLabel.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 13));
+		lblNewJgoodiesLabel.setBounds(21, 291, 771, 31);
 		frame.getContentPane().add(lblNewJgoodiesLabel);
 		
 		JLabel lblNumberOfParameters = DefaultComponentFactory.getInstance().createLabel("Number of parameters:");
-		lblNumberOfParameters.setFont(new Font("Apple SD Gothic Neo", Font.BOLD, 20));
-		lblNumberOfParameters.setBounds(708, 109, 261, 23);
+		lblNumberOfParameters.setFont(new Font("Adobe Gothic Std", Font.BOLD, 20));
+		lblNumberOfParameters.setBounds(708, 102, 261, 48);
 		frame.getContentPane().add(lblNumberOfParameters);
 		
 		JLabel lblCancer = DefaultComponentFactory.getInstance().createLabel("Cancer: 10");
-		lblCancer.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 15));
-		lblCancer.setBounds(708, 150, 120, 16);
+		lblCancer.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
+		lblCancer.setBounds(708, 149, 120, 31);
 		frame.getContentPane().add(lblCancer);
 		
 		JLabel lblDiabetes = DefaultComponentFactory.getInstance().createLabel("Diabetes: 8");
-		lblDiabetes.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 15));
-		lblDiabetes.setBounds(708, 192, 120, 16);
+		lblDiabetes.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
+		lblDiabetes.setBounds(708, 177, 120, 31);
 		frame.getContentPane().add(lblDiabetes);
 		
 		JLabel lblHepatitis = DefaultComponentFactory.getInstance().createLabel("Hepatitis: 19");
-		lblHepatitis.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 15));
-		lblHepatitis.setBounds(813, 150, 120, 16);
+		lblHepatitis.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
+		lblHepatitis.setBounds(813, 147, 120, 34);
 		frame.getContentPane().add(lblHepatitis);
 		
 		JLabel lblThyroid = DefaultComponentFactory.getInstance().createLabel("Thyroid: 20");
-		lblThyroid.setFont(new Font("Apple SD Gothic Neo", Font.PLAIN, 15));
-		lblThyroid.setBounds(813, 192, 120, 16);
+		lblThyroid.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
+		lblThyroid.setBounds(813, 177, 120, 31);
 		frame.getContentPane().add(lblThyroid);
 		
 		
