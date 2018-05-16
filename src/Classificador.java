@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FileDialog;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+
 
 public class Classificador {
 
@@ -176,32 +177,32 @@ public class Classificador {
 		btnclassify.setBounds(21, 501, 184, 131);
 		frame.getContentPane().add(btnclassify);
 		
-		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("Please insert the data as the following example: 0,1,1,1,1,1,1 (according to the number of parameters of the disease)");
+		JLabel lblNewJgoodiesLabel = new JLabel("Please insert the data as the following example: 0,1,1,1,1,1,1 (according to the number of parameters of the disease)");
 		lblNewJgoodiesLabel.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 13));
 		lblNewJgoodiesLabel.setBounds(21, 291, 771, 31);
 		frame.getContentPane().add(lblNewJgoodiesLabel);
 		
-		JLabel lblNumberOfParameters = DefaultComponentFactory.getInstance().createLabel("Number of parameters:");
+		JLabel lblNumberOfParameters = new JLabel("Number of parameters:");
 		lblNumberOfParameters.setFont(new Font("Adobe Gothic Std", Font.BOLD, 20));
 		lblNumberOfParameters.setBounds(708, 102, 261, 48);
 		frame.getContentPane().add(lblNumberOfParameters);
 		
-		JLabel lblCancer = DefaultComponentFactory.getInstance().createLabel("Cancer: 10");
+		JLabel lblCancer = new JLabel("Cancer: 10");
 		lblCancer.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
 		lblCancer.setBounds(708, 149, 120, 31);
 		frame.getContentPane().add(lblCancer);
 		
-		JLabel lblDiabetes = DefaultComponentFactory.getInstance().createLabel("Diabetes: 8");
+		JLabel lblDiabetes =new JLabel("Diabetes: 8");
 		lblDiabetes.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
 		lblDiabetes.setBounds(708, 177, 120, 31);
 		frame.getContentPane().add(lblDiabetes);
 		
-		JLabel lblHepatitis = DefaultComponentFactory.getInstance().createLabel("Hepatitis: 19");
+		JLabel lblHepatitis = new JLabel("Hepatitis: 19");
 		lblHepatitis.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
 		lblHepatitis.setBounds(813, 147, 120, 34);
 		frame.getContentPane().add(lblHepatitis);
 		
-		JLabel lblThyroid = DefaultComponentFactory.getInstance().createLabel("Thyroid: 20");
+		JLabel lblThyroid = new JLabel("Thyroid: 20");
 		lblThyroid.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
 		lblThyroid.setBounds(813, 177, 120, 31);
 		frame.getContentPane().add(lblThyroid);
