@@ -131,13 +131,15 @@ public class Classificador {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String[] Input=textArea.getText().split(",");
+					System.out.println(textArea.getText());
+					
+					String [] Input= textArea.getText().split(",");
+					System.out.println(Input);
 					vector=new int[Input.length];
 					for(int i=0;i<Input.length;i++) {
-						int x=Integer.parseInt(Input[i]);
-						if(x>vector[i]) {
-							vector[i]=x;
-						}
+						vector[i]=Integer.parseInt(Input[i]);
+							System.out.println(vector);
+						
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -147,6 +149,7 @@ public class Classificador {
 				FileInputStream fis = new FileInputStream(textParameters.getText()); 
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				bn = (BN) ois.readObject();
+				
 				
 				fis.close();
 				ois.close();
@@ -177,6 +180,7 @@ public class Classificador {
 		btnclassify.setBounds(21, 501, 184, 131);
 		frame.getContentPane().add(btnclassify);
 		
+
 		JLabel lblNewJgoodiesLabel = new JLabel("Please insert the data as the following example: 0,1,1,1,1,1,1 (according to the number of parameters of the disease)");
 		lblNewJgoodiesLabel.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 13));
 		lblNewJgoodiesLabel.setBounds(21, 291, 771, 31);
@@ -206,7 +210,7 @@ public class Classificador {
 		lblThyroid.setFont(new Font("Adobe Gothic Std", Font.PLAIN, 15));
 		lblThyroid.setBounds(813, 177, 120, 31);
 		frame.getContentPane().add(lblThyroid);
-		
+
 		
 	}
 }
