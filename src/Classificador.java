@@ -131,22 +131,17 @@ public class Classificador {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					System.out.println(textArea.getText());
-					
-					String [] Input= textArea.getText().split(",");
-					System.out.println(Input);
+					String[] Input = textArea.getText().split(",");
 					vector=new int[Input.length];
 					for(int i=0;i<Input.length;i++) {
 						vector[i]=Integer.parseInt(Input[i]);
-							System.out.println(vector);
-						
 					}
+					
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}	
-				
 				try {
-				FileInputStream fis = new FileInputStream(textParameters.getText()); 
+				FileInputStream fis = new FileInputStream(redebayes); 
 				ObjectInputStream ois = new ObjectInputStream(fis);
 				bn = (BN) ois.readObject();
 				
@@ -166,7 +161,7 @@ public class Classificador {
 				}
 				
 				res=bn.prob(vector);
-				String text = new String ("The most likely class is " + res.get(1).toString() + "with the probability of " + res.get(2).toString());
+				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString());
 				System.out.println(text);
 				textRes.setText(text);
 			
