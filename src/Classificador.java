@@ -104,7 +104,7 @@ public class Classificador {
 				else 
 					System.out.println("File selected: " + filename);
 				redebayes= fd.getDirectory()+filename; //Guarda o caminho do ficheiro selecionado
-				textParameters.setText(filename); //Nome do ficheiro aparece na aplicação  na caixa de texto junto ao botão load
+				textParameters.setText(filename); //Nome do ficheiro aparece na aplicaï¿½ï¿½o  na caixa de texto junto ao botï¿½o load
 				
 			}
 		});
@@ -131,7 +131,7 @@ public class Classificador {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String[] Input = textArea.getText().split(","); //Transofrma os parâmetros inseridos pelo médico numa array de strings separados pela ","
+					String[] Input = textArea.getText().split(","); //Transofrma os parï¿½metros inseridos pelo mï¿½dico numa array de strings separados pela ","
 					vector=new int[Input.length];
 					for(int i=0;i<Input.length;i++) { //Ciclo que transforma todos os elemntos inseridos pelo medico numa vetor de inteiros
 						vector[i]=Integer.parseInt(Input[i]);
@@ -141,7 +141,7 @@ public class Classificador {
 					e1.printStackTrace();
 				}	
 				try {
-				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado através do caminho anteriormente guardado
+				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado atravï¿½s do caminho anteriormente guardado
 				ObjectInputStream ois = new ObjectInputStream(fis); //Desserializa o ficheiro
 				bn = (BN) ois.readObject(); //Le o ficheiro
 				
@@ -162,7 +162,7 @@ public class Classificador {
 				
 				res=bn.prob(vector);
 				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString() + "%");
-				textRes.setText(text); //Devolve o resultado na caixa de texto junto ao botão classify
+				textRes.setText(text); //Devolve o resultado na caixa de texto junto ao botï¿½o classify
 			
 			}
 		});
