@@ -78,7 +78,7 @@ public class Classificador {
 		lblClickBelowTo.setBounds(21, 254, 387, 53);
 		frame.getContentPane().add(lblClickBelowTo);
 		
-		JTextField textParameters = new JTextField();
+		textParameters = new JTextField();
 		textParameters.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textParameters.setBounds(237, 103, 445, 123);
 		frame.getContentPane().add(textParameters);
@@ -95,16 +95,16 @@ public class Classificador {
 			public void actionPerformed(ActionEvent arg0) {
 				FileDialog fd = new FileDialog(frame, "Select a file", FileDialog.LOAD);
 				frame.getContentPane().setLayout(null);
-				fd.setDirectory("C:\\");
-				fd.setFile("*.BN");
+				fd.setDirectory("C:\\"); //Permite ir procurar o ficheiro nas pastas do computador
+				fd.setFile("*.BN"); //Procura ficheiros do tipo .BN (tipo de ficheiro guardado pela aprendizagem)
 				fd.setVisible(true);
-				String filename = fd.getFile();
+				String filename = fd.getFile(); //Guarda o nome do ficheiro selecionado
 				if (filename == null)
 					System.out.println("Cancelled");
 				else 
 					System.out.println("File selected: " + filename);
-				redebayes= fd.getDirectory()+filename;
-				textParameters.setText(filename);
+				redebayes= fd.getDirectory()+filename; //Guarda o caminho do ficheiro selecionado
+				textParameters.setText(filename); //Nome do ficheiro aparece na aplicação  na caixa de texto junto ao botão load
 				
 			}
 		});
@@ -121,7 +121,7 @@ public class Classificador {
 		textArea.setBounds(21, 319, 966, 166);
 		frame.getContentPane().add(textArea);
 		
-		JTextField textRes = new JTextField();
+		textRes = new JTextField();
 		textRes.setBounds(237, 501, 750, 131);
 		frame.getContentPane().add(textRes);
 		textRes.setColumns(10);
@@ -131,9 +131,9 @@ public class Classificador {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					String[] Input = textArea.getText().split(",");
+					String[] Input = textArea.getText().split(","); //Transofrma os parâmetros inseridos pelo médico numa array de strings separados pela ","
 					vector=new int[Input.length];
-					for(int i=0;i<Input.length;i++) {
+					for(int i=0;i<Input.length;i++) { //Ciclo que transforma todos os elemntos inseridos pelo medico numa vetor de inteiros
 						vector[i]=Integer.parseInt(Input[i]);
 					}
 					
@@ -141,9 +141,9 @@ public class Classificador {
 					e1.printStackTrace();
 				}	
 				try {
-				FileInputStream fis = new FileInputStream(redebayes); 
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				bn = (BN) ois.readObject();
+				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado através do caminho anteriormente guardado
+				ObjectInputStream ois = new ObjectInputStream(fis); //Desserializa o ficheiro
+				bn = (BN) ois.readObject(); //Le o ficheiro
 				
 				
 				fis.close();
@@ -162,8 +162,7 @@ public class Classificador {
 				
 				res=bn.prob(vector);
 				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString() + "%");
-				System.out.println(text);
-				textRes.setText(text);
+				textRes.setText(text); //Devolve o resultado na caixa de texto junto ao botão classify
 			
 			}
 		});

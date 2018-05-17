@@ -92,16 +92,16 @@ public class Aprendizagem {
 			public void actionPerformed(ActionEvent arg0) {
 				FileDialog fd = new FileDialog(frame, "Select a file", FileDialog.LOAD);
 				frame.getContentPane().setLayout(null);
-				fd.setDirectory("C:\\");
-				fd.setFile("*.csv");
+				fd.setDirectory("C:\\"); //Permite ir procurar o ficheiro nas pastas do computador
+				fd.setFile("*.csv"); //Procura ficheiros do tipo .csv
 				fd.setVisible(true);
-				String filename = fd.getFile();
+				String filename = fd.getFile(); //Guarda o nome do ficheiro selecionado
 				if (filename == null)
 					System.out.println("Cancelled");
 				else 
 					System.out.println("File selected: " + filename);
-				database = fd.getDirectory()+filename;
-				textField.setText(filename);
+				database = fd.getDirectory()+filename; //Guarda o caminho do ficheiro selecionado
+				textField.setText(filename); //Nome do ficheiro aparece na aplicação  na caixa de texto junto ao botão choose me
 				
 			}
 		});
@@ -124,30 +124,30 @@ public class Aprendizagem {
 				int[] domains=null; 
 				int numblines=0;
 			
-//Primeira leitura que percorre o ficheiro e forma o vetor de domÃŒnios e descobre as dimensões da matriz
+//Primeira leitura que percorre o ficheiro e forma o vetor de dominios e descobre as dimensões da matriz
 
 				try { 
 					
-					FileReader fr=new FileReader(database);
-					BufferedReader br=new BufferedReader(fr);
+					FileReader fr=new FileReader(database); //Permite selecionar o documento a ser lido a partir do caminho anteriormente guardado 
+					BufferedReader br=new BufferedReader(fr); //Permite ler o documento
 					String CurrentLine;
 					String[] line;
-					CurrentLine=br.readLine();
-					line=CurrentLine.split(",");
-					domains=new int[line.length];
+					CurrentLine=br.readLine(); //Le a primeira linha do ficheiro (como string)
+					line=CurrentLine.split(","); //Transofrma a informacao da primeira linha num vetor de strigs separados por ,
+					domains=new int[line.length]; 
 					numblines++;
-					for(int i=0;i<line.length;i++) {
+					for(int i=0;i<line.length;i++) { //Ciclo que transforma os dados dum vetor de strings para um vetor de inteiros para a primeira linha
 						int x=Integer.parseInt(line[i]);
-						if(x>domains[i]) {
+						if(x>domains[i]) { //Atualiza o valor maximo de cada variavel e vai adicionando ao vetor de dominios
 							domains[i]=x;
 						}
 					}
-					while((CurrentLine=br.readLine())!=null) {
-						numblines++;
+					while((CurrentLine=br.readLine())!=null) { //Ciclo que vai percorrendo as restantes linhas do ficheiro
+						numblines++; //Permite descobrir a dimensao da matriz = dmiensao doo numero de linhas do ficheiro
 						line=CurrentLine.split(",");
-						for(int i=0;i<line.length;i++) {
+						for(int i=0;i<line.length;i++) { //Ciclo que transforma os dados dum vetor de strings para um vetor de inteiros para as restantes linhas
 							int x=Integer.parseInt(line[i]);
-							if(x>domains[i]) {
+							if(x>domains[i]) { //Atualiza o valor maximo de cada variavel e vai adicionando ao vetor de dominios
 								domains[i]=x;
 							}
 						}
@@ -158,7 +158,7 @@ public class Aprendizagem {
 					e1.printStackTrace();
 				}	
 				
-				for(int j=0;j<domains.length;j++) {
+				for(int j=0;j<domains.length;j++) { //Adiciona 1 a todos os elementos do dominio (uma vez que atraves do maximo nao se tem em conta o elemento 0)
 					domains[j]++;
 				}
 				
@@ -174,26 +174,26 @@ public class Aprendizagem {
 					String CurrentLine;
 					String[] line;
 					
-						for(int i=0;i<numblines;i++) {
+						for(int i=0;i<numblines;i++) { //Ciclo que cria uma matriz  de inteiros que contem toda a informacao do ficheiro (cada elemento de cada linha e uma entrada na matriz)
 							CurrentLine=br.readLine();
 							line=CurrentLine.split(",");
 							for(int j=0;j<line.length;j++) {
 								matrix[i][j]=Integer.parseInt(line[j]);
 							}
 						}
-					//System.out.println(Arrays.deepToString(matrix));
+					
 					br.close();
 					fr.close();
 				}catch(Exception e1) {
 					e1.printStackTrace();
 				}
 				
-				am= new Amostra(domains);
+				am= new Amostra(domains); //Controi a amostra
 				
-				for(int i=0;i<matrix.length;i++) {
+				for(int i=0;i<matrix.length;i++) { //Adiciona a amostra a informacao contida na matriz 
 					am.add(matrix[i]);
 				}
-				//System.out.println(am);
+			
 				
 //Criação do Grafo Pesado
 				wg=new WGraph(domains.length-1);
@@ -205,18 +205,15 @@ public class Aprendizagem {
 							}
 						}
 					}
-				//System.out.println(wg);
+				
 
 //Criação da MST
 				mst=wg.MST(0);
-				//System.out.println(mst);
+				
 				
 //Criação da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
-				
-				int[] v= {1,0,1,1,1,1,1,1,1,1,1};
-				System.out.println(bn.prob(v));
 
 		}	
 		});
