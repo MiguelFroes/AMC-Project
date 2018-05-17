@@ -159,10 +159,9 @@ public class Classificador {
 				// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				System.out.println(vector);
 				res=bn.prob(vector);
-				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString() + "%");
-				textRes.setText(text); //Devolve o resultado na caixa de texto junto ao bot�o classify
+				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
 			
 			}
 		});
