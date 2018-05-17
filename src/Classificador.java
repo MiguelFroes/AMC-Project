@@ -161,7 +161,7 @@ public class Classificador {
 				}
 				
 				res=bn.prob(vector);
-				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString() "%");
+				String text = new String ("The most likely class is " + res.get(0).toString() + " with the probability of " + res.get(1).toString() + "%");
 				System.out.println(text);
 				textRes.setText(text);
 			
