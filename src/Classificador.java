@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.xml.soap.Text;
+
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,6 +33,8 @@ public class Classificador {
 	private BN bn;
 	private LinkedList<Double> res;
 	private JTextField textRes;
+	private String filename;
+	private boolean numero;
 	
 
 	/**
@@ -62,7 +66,7 @@ public class Classificador {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
-		frame.setBounds(600, 400, 1009, 699);
+		frame.setBounds(600, 400, 1036, 699);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -98,13 +102,13 @@ public class Classificador {
 				fd.setDirectory("C:\\"); //Permite ir procurar o ficheiro nas pastas do computador
 				fd.setFile("*.BN"); //Procura ficheiros do tipo .BN (tipo de ficheiro guardado pela aprendizagem)
 				fd.setVisible(true);
-				String filename = fd.getFile(); //Guarda o nome do ficheiro selecionado
+				filename = fd.getFile(); //Guarda o nome do ficheiro selecionado
 				if (filename == null)
 					System.out.println("Cancelled");
 				else 
 					System.out.println("File selected: " + filename);
-				redebayes= fd.getDirectory()+filename; //Guarda o caminho do ficheiro selecionado
-				textParameters.setText(filename); //Nome do ficheiro aparece na aplica��o  na caixa de texto junto ao bot�o load
+				redebayes= fd.getDirectory()+filename; //Variavel que guarda o caminho do ficheiro selecionado
+				textParameters.setText(filename); //Nome do ficheiro aparece na caixa de texto junto ao botao load
 				
 			}
 		});
@@ -122,6 +126,7 @@ public class Classificador {
 		frame.getContentPane().add(textArea);
 		
 		textRes = new JTextField();
+		textRes.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		textRes.setBounds(237, 501, 750, 131);
 		frame.getContentPane().add(textRes);
 		textRes.setColumns(10);
@@ -129,19 +134,50 @@ public class Classificador {
 		JButton btnclassify = new JButton("CLASSIFY");
 		btnclassify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				
 				try {
-					String[] Input = textArea.getText().split(","); //Transofrma os par�metros inseridos pelo m�dico numa array de strings separados pela ","
+					String[] Input = textArea.getText().split(","); //Transofrma os parametros inseridos pelo medico numa array de strings separados pela ","
 					vector=new int[Input.length];
-					for(int i=0;i<Input.length;i++) { //Ciclo que transforma todos os elemntos inseridos pelo medico numa vetor de inteiros
-						vector[i]=Integer.parseInt(Input[i]);
-					}
+					numero = true;
+					for(int i=0;i<Input.length&&numero==true;i++) { //Ciclo que transforma os parametros inseridos pelo medico num vetor de inteiros
+						try {
+							vector[i]=Integer.parseInt(Input[i]);
+					   }catch (NumberFormatException e){
+					       System.out.println("not a number"); 
+					       numero=false;
+					   } 	
+					}	
 					
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}	
+				
+				if (numero==false) { //Devolve uma mensagem caso o medico insira, por engano, um vetor que nao e constituido por numeros
+				textRes.setText("Please insert the paramaters in the correct form.");
+				}
+					
+				else {
+				//O seguinte conjunto de ifs verifica se o numero de parametros introduzido corresponde ao numero de parametros da doenca selecionada pela rede de bayes. Devolve uma mensagem caso nao o seja
+				if(filename.equals("Cancer.BN") && vector.length!=10) { 
+					textRes.setText("Please insert the correct number of paramaters.");
+				}
+				else {
+				if(filename.equals("Diabetes.BN") && vector.length!=8) {
+					textRes.setText("Please insert the correct number of paramaters.");
+				}
+				else {
+				if(filename.equals("Hepatitis.BN") && vector.length!=19) {
+					textRes.setText("Please insert the correct number of paramaters.");
+				}
+				else {
+				if(filename.equals("Thyroid.BN") && vector.length!=20) {
+					textRes.setText("Please insert the correct number of paramaters.");
+				}
+				else {
+				
 				try {
-				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado atrav�s do caminho anteriormente guardado
+				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado atraves do caminho anteriormente guardado
 				ObjectInputStream ois = new ObjectInputStream(fis); //Desserializa o ficheiro
 				bn = (BN) ois.readObject(); //Le o ficheiro
 				
@@ -159,10 +195,12 @@ public class Classificador {
 				// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(vector);
+				
+				
 				res=bn.prob(vector);
 				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
-			
+				}}}}
+				}
 			}
 		});
 		btnclassify.setForeground(new Color(0, 128, 128));
