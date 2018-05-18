@@ -167,10 +167,7 @@ public class Classificador {
 					textRes.setText("Please insert the correct number of paramaters.");
 				}
 				else {
-				if(filename.equals("Diabetes.BN") && vector.length!=8) {
-					textRes.setText("Please insert the correct number of paramaters.");
-				}
-				else {
+				
 				if(filename.equals("Hepatitis.BN") && vector.length!=19) {
 					textRes.setText("Please insert the correct number of paramaters.");
 				}
@@ -218,11 +215,11 @@ public class Classificador {
 					textRes.setText("Please insert each variable within its domain:"+"\n"+"[3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 5]");
 				}
 				if(filename.equals("Other.BN")&&dom==false) {
-					textRes.setText("Please insert each variable within its domain.");
+					textRes.setText("Please insert the correct number of variableas and the correct domain.");
 				}
 				
 				}
-				}}}}
+				}}}
 				}
 			}
 		});
