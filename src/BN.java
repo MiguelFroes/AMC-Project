@@ -69,8 +69,6 @@ public class BN implements Interface_BN,Serializable{
 		double[]res=new double[cDomain];
 		LinkedList<Double> res_final=new LinkedList<Double>();
 		double soma=0;
-		double max=0;
-		double indice=0;
 		for(c=0;c<cDomain;c++) {//Ciclo que percorre o domínio da classe
 			int xi,pi,pj,i;
 			double r=0;
@@ -92,16 +90,11 @@ public class BN implements Interface_BN,Serializable{
 		for(int i=0;i<res.length;i++) {//Ciclo que soma todos os valores de probabilidade das classes
 			soma+=res[i];
 		}
-		for(int pos=0;pos<res.length;pos++) {//Ciclo que escolhe a classe com maior probabilidade
-			if(res[pos]>max) {
-				max=res[pos];
-				indice=pos;
-			}
+
+		for(int j=0; j<res.length; j++) { //Ciclo que normaliza as probabilidades
+			res_final.add((res[j]/soma)*100);
 		}
-		res_final.addFirst(indice);
-		res_final.addLast((max/soma)*100);//Normalização da probabilidade e transformação em percentagem
+		
 		return res_final;
 	}
-	
-
 }

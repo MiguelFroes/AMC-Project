@@ -31,6 +31,7 @@ public class Classificador {
 	private int[] vector;
 	private BN bn;
 	private LinkedList<Double> res;
+	private LinkedList<Double> probs;	
 	private JTextArea textRes;
 	private String filename;
 	private boolean numero;
@@ -167,8 +168,11 @@ public class Classificador {
 					textRes.setText("Please insert the correct number of paramaters.");
 				}
 				else {
-				
-				if(filename.equals("Hepatitis.BN") && vector.length!=19) {
+					if(filename.equals("Hepatitis.BN") && vector.length!=19) {
+						textRes.setText("Please insert the correct number of paramaters.");
+					}
+					else {
+				if(filename.equals("Diabetes.BN") && vector.length!=8) {
 					textRes.setText("Please insert the correct number of paramaters.");
 				}
 				else {
@@ -196,8 +200,23 @@ public class Classificador {
 					e.printStackTrace();
 				}
 				dom=true;
+				
+				
 				try {
-				res=bn.prob(vector); //Devolve um vetor que contem a classe com maior probabilidade e qual a probabilidade obtida por essa classe
+				probs=bn.prob(vector); 
+				double max=0;
+				double indice=0;
+				res=new LinkedList<Double>();
+				
+				for(int pos=0;pos<probs.size();pos++) {//Ciclo que escolhe a classe com maior probabilidade
+					if(probs.get(pos)>max) {
+						max=probs.get(pos);
+						indice=pos;
+					}
+				}
+				res.add(indice);
+				res.add(max);
+				//res e uma linked list que contem a classe com maior probabilidade e qual a probabilidade obtida por essa classe
 				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
 				} catch (IndexOutOfBoundsException e) {//O programa da um erro deste tipo se se inserir no vetor de parametros um numero que esta fora do dominio da variavel
 					dom=false;	
@@ -215,11 +234,11 @@ public class Classificador {
 					textRes.setText("Please insert each variable within its domain:"+"\n"+"[3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 5]");
 				}
 				if(filename.equals("Other.BN")&&dom==false) {
-					textRes.setText("Please insert the correct number of variableas and the correct domain.");
+					textRes.setText("Please insert the correct number oeach variable within its domain.");
 				}
 				
 				}
-				}}}
+				}}}}
 				}
 			}
 		});

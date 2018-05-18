@@ -214,12 +214,10 @@ public class Aprendizagem {
 							}
 						}
 					}
-				
-
 //Criação da MST
-				mst=wg.MST(0);
-
 				
+					mst=wg.MST(0);
+								
 				
 //Criação da rede de Bayes
 				
