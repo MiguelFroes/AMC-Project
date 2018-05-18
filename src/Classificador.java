@@ -153,6 +153,10 @@ public class Classificador {
 					e1.printStackTrace();
 				}	
 				
+				if (filename==null) {
+					textRes.setText("Please load a .BN document above.");
+				}
+				else {
 				if (numero==false) { //Devolve uma mensagem caso o medico insira, por engano, um vetor que nao e constituido por numeros
 				textRes.setText("Please insert the paramaters in the correct form.");
 				}
@@ -197,13 +201,13 @@ public class Classificador {
 				}
 				
 				try {
-				res=bn.prob(vector);
+				res=bn.prob(vector); //Devolve um vetor que contem a classe com maior probabilidade e qual a probabilidade obtida por essa classe
 				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
-				} catch (IndexOutOfBoundsException e) {
+				} catch (IndexOutOfBoundsException e) { //O programa da um erro deste tipo se se inserir no vetor de parametros um numero que esta fora do dominio da variavel
 				    System.out.println("Variables with domains not correct");
 				    textRes.setText("Please insert the correct domain for each variable");
 				}
-				
+				}
 				}}}}
 				}
 			}

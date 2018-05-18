@@ -95,12 +95,12 @@ public class Aprendizagem {
 				fd.setDirectory("C:\\"); //Permite ir procurar o ficheiro nas pastas do computador
 				fd.setFile("*.csv"); //Procura ficheiros do tipo .csv
 				fd.setVisible(true);
-				String filename = fd.getFile(); //Guarda o nome do ficheiro selecionado
+				String filename = fd.getFile(); //Variavel que guarda o nome do ficheiro selecionado
 				if (filename == null)
 					System.out.println("Cancelled");
 				else 
 					System.out.println("File selected: " + filename);
-				database = fd.getDirectory()+filename; //Guarda o caminho do ficheiro selecionado
+				database = fd.getDirectory()+filename; //Variavel que guarda o caminho do ficheiro selecionado
 				textField.setText(filename); //Nome do ficheiro aparece na aplicação  na caixa de texto junto ao botão choose me
 				
 			}
@@ -175,9 +175,9 @@ public class Aprendizagem {
 					String[] line;
 					
 						for(int i=0;i<numblines;i++) { //Ciclo que cria uma matriz  de inteiros que contem toda a informacao do ficheiro (cada elemento de cada linha e uma entrada na matriz)
-							CurrentLine=br.readLine();
-							line=CurrentLine.split(",");
-							for(int j=0;j<line.length;j++) {
+							CurrentLine=br.readLine(); //Le linha a linha
+							line=CurrentLine.split(","); //Insere a informacao de cada linha num vetor separado por ,
+							for(int j=0;j<line.length;j++) { //Transforma a informacao num inteiro e insere-a na posicao da matriz correspondente
 								matrix[i][j]=Integer.parseInt(line[j]);
 							}
 						}
@@ -190,18 +190,18 @@ public class Aprendizagem {
 				
 				am= new Amostra(domains); //Controi a amostra
 				
-				for(int i=0;i<matrix.length;i++) { //Adiciona a amostra a informacao contida na matriz 
+				for(int i=0;i<matrix.length;i++) { //Adiciona a informacao contida na matriz na amostra 
 					am.add(matrix[i]);
 				}
 			
 				
 //Criação do Grafo Pesado
-				wg=new WGraph(domains.length-1);
-					for(int i=0;i<domains.length-1;i++) {
+				wg=new WGraph(domains.length-1); 
+					for(int i=0;i<domains.length-1;i++) { //O grafo pesado e construido obtenndo-se os pesos dos nos entre eles
 						for(int j=0;j<domains.length-1;j++) {
-							if(i!=j) {
-							double w=Pesos.weight(i, j, am);
-							wg.add_edge(i,j,w);
+							if(i!=j) { //Garante que nao estamos a calcular os pesos de um no com ele proprio
+							double w=Pesos.weight(i, j, am); //Calculo dos pesos
+							wg.add_edge(i,j,w); //Insercao do peso no grafo entre os nos i e j
 							}
 						}
 					}
@@ -214,6 +214,7 @@ public class Aprendizagem {
 //Criação da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
+				System.out.println("Ja aprendi");
 
 		}	
 		});
@@ -228,6 +229,7 @@ public class Aprendizagem {
 		btnSave.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//De acordo com o JRadio Button Selecionado, o ficheiro vai ser guardado com o nome desse botão
 				if(Cancer) {
 					parameter="Cancer";
 				}
