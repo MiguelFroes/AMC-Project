@@ -9,6 +9,7 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -17,7 +18,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -25,6 +28,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Aprendizagem {
 
@@ -74,6 +78,7 @@ public class Aprendizagem {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Learning application");
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
 		frame.setBounds(100, 100, 567, 357);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,7 +88,7 @@ public class Aprendizagem {
 		lblApp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApp.setForeground(new Color(0, 128, 128));
 		lblApp.setFont(new Font("Adobe Gothic Std", Font.BOLD, 18));
-		lblApp.setBounds(65, 10, 410, 37);
+		lblApp.setBounds(78, 36, 410, 37);
 		frame.getContentPane().add(lblApp);
 		
 		JButton btnChooseFile = new JButton("CHOOSE ME");
@@ -105,15 +110,15 @@ public class Aprendizagem {
 				else 
 					System.out.println("File selected: " + filename);
 				database = fd.getDirectory()+filename; //Variavel que guarda o caminho do ficheiro selecionado
-				textField.setText(filename); //Nome do ficheiro aparece na aplicação  na caixa de texto junto ao botão choose me
+				textField.setText(filename); //Nome do ficheiro aparece na aplicaï¿½ï¿½o  na caixa de texto junto ao botï¿½o choose me
 				
 			}
 		});
-		btnChooseFile.setBounds(24, 56, 141, 47);
+		btnChooseFile.setBounds(24, 85, 141, 47);
 		frame.getContentPane().add(btnChooseFile);
 		
 		textField = new JTextField();
-		textField.setBounds(186, 56, 334, 47);
+		textField.setBounds(186, 85, 334, 47);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -128,7 +133,7 @@ public class Aprendizagem {
 				int[] domains=null; 
 				int numblines=0;
 			
-//Primeira leitura que percorre o ficheiro e forma o vetor de dominios e descobre as dimensões da matriz
+//Primeira leitura que percorre o ficheiro e forma o vetor de dominios e descobre as dimensï¿½es da matriz
 				if(filename==null)
 					textTeach.setText("Please choose a .csv file");
 				else {
@@ -171,7 +176,7 @@ public class Aprendizagem {
 					domains[j]++;
 				}
 				System.out.println(Arrays.toString(domains));
-//Criação da amostra
+//Criaï¿½ï¿½o da amostra
 				
 
 				matrix=new int[numblines][domains.length];
@@ -204,7 +209,7 @@ public class Aprendizagem {
 				}
 			
 				
-//Criação do Grafo Pesado
+//Criaï¿½ï¿½o do Grafo Pesado
 				wg=new WGraph(domains.length-1); 
 					for(int i=0;i<domains.length-1;i++) { //O grafo pesado e construido obtenndo-se os pesos dos nos entre eles
 						for(int j=0;j<domains.length-1;j++) {
@@ -214,19 +219,19 @@ public class Aprendizagem {
 							}
 						}
 					}
-//Criação da MST
+//Criaï¿½ï¿½o da MST
 				
 					mst=wg.MST(0);
 								
 				
-//Criação da rede de Bayes
+//Criaï¿½ï¿½o da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
 				textTeach.setText("Ready to be saved");
 
 		}}}	
 		});
-		btnTeachMe.setBounds(24, 169, 138, 47);
+		btnTeachMe.setBounds(24, 202, 138, 47);
 		frame.getContentPane().add(btnTeachMe);
 		
 		JButton btnSave = new JButton("SAVE ME");
@@ -237,7 +242,7 @@ public class Aprendizagem {
 		btnSave.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//De acordo com o JRadio Button Selecionado, o ficheiro vai ser guardado com o nome desse botão
+				//De acordo com o JRadio Button Selecionado, o ficheiro vai ser guardado com o nome desse botï¿½o
 				if(Cancer) {
 					parameter="Cancer";
 				}
@@ -274,11 +279,11 @@ public class Aprendizagem {
 				
 			}
 		});
-		btnSave.setBounds(200, 228, 141, 44);
+		btnSave.setBounds(200, 258, 141, 44);
 		frame.getContentPane().add(btnSave);
 		
 		JRadioButton rdbtnCancer = new JRadioButton("Cancer");
-		rdbtnCancer.setBounds(9, 115, 91, 35);
+		rdbtnCancer.setBounds(19, 155, 91, 35);
 		frame.getContentPane().add(rdbtnCancer);
 		rdbtnCancer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -287,7 +292,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnDiabetes = new JRadioButton("Diabetes");
-		rdbtnDiabetes.setBounds(109, 115, 100, 35);
+		rdbtnDiabetes.setBounds(122, 155, 100, 35);
 		frame.getContentPane().add(rdbtnDiabetes);
 		rdbtnDiabetes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -296,7 +301,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnHepatitis = new JRadioButton("Hepatitis");
-		rdbtnHepatitis.setBounds(218, 115, 111, 35);
+		rdbtnHepatitis.setBounds(230, 155, 111, 35);
 		frame.getContentPane().add(rdbtnHepatitis);
 		rdbtnHepatitis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -305,7 +310,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnThyroid= new JRadioButton("Thyroid");
-		rdbtnThyroid.setBounds(338, 115, 91, 35);
+		rdbtnThyroid.setBounds(339, 155, 91, 35);
 		frame.getContentPane().add(rdbtnThyroid);
 		rdbtnThyroid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -314,7 +319,7 @@ public class Aprendizagem {
 		});
 		
 		JRadioButton rdbtnOther = new JRadioButton("Other");
-		rdbtnOther.setBounds(438, 114, 91, 37);
+		rdbtnOther.setBounds(441, 154, 91, 37);
 		frame.getContentPane().add(rdbtnOther);
 		rdbtnOther.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -322,6 +327,7 @@ public class Aprendizagem {
 			}
 		});
 		 
+		
 		ButtonGroup group=new ButtonGroup();
 		group.add(rdbtnCancer);
 		group.add(rdbtnDiabetes);
@@ -331,7 +337,7 @@ public class Aprendizagem {
 		
 		textTeach = new JTextField();
 		textTeach.setColumns(10);
-		textTeach.setBounds(183, 169, 337, 47);
+		textTeach.setBounds(183, 202, 337, 47);
 		frame.getContentPane().add(textTeach);
 	}
 }
