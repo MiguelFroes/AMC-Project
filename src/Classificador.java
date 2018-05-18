@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FileDialog;
@@ -13,8 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
-import javax.xml.soap.Text;
-
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,9 +31,10 @@ public class Classificador {
 	private int[] vector;
 	private BN bn;
 	private LinkedList<Double> res;
-	private JTextField textRes;
+	private JTextArea textRes;
 	private String filename;
 	private boolean numero;
+	private boolean dom; 
 	
 
 	/**
@@ -125,7 +125,8 @@ public class Classificador {
 		textArea.setBounds(21, 319, 966, 166);
 		frame.getContentPane().add(textArea);
 		
-		textRes = new JTextField();
+		textRes = new JTextArea();
+		textRes.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		textRes.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		textRes.setBounds(237, 501, 750, 131);
 		frame.getContentPane().add(textRes);
@@ -144,7 +145,6 @@ public class Classificador {
 						try {
 							vector[i]=Integer.parseInt(Input[i]);
 					   }catch (NumberFormatException e){
-					       System.out.println("not a number"); 
 					       numero=false;
 					   } 	
 					}	
@@ -179,7 +179,6 @@ public class Classificador {
 					textRes.setText("Please insert the correct number of paramaters.");
 				}
 				else {
-				
 				try {
 				FileInputStream fis = new FileInputStream(redebayes); //Abre uma conexao com o ficheiro selecionado atraves do caminho anteriormente guardado
 				ObjectInputStream ois = new ObjectInputStream(fis); //Desserializa o ficheiro
@@ -199,14 +198,29 @@ public class Classificador {
 				// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				dom=true;
 				try {
 				res=bn.prob(vector); //Devolve um vetor que contem a classe com maior probabilidade e qual a probabilidade obtida por essa classe
 				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
-				} catch (IndexOutOfBoundsException e) { //O programa da um erro deste tipo se se inserir no vetor de parametros um numero que esta fora do dominio da variavel
-				    System.out.println("Variables with domains not correct");
-				    textRes.setText("Please insert the correct domain for each variable");
+				} catch (IndexOutOfBoundsException e) {//O programa da um erro deste tipo se se inserir no vetor de parametros um numero que esta fora do dominio da variavel
+					dom=false;	
 				}
+				if(filename.equals("Cancer.BN")&&dom==false) { 
+					textRes.setText("Please insert each variable within its domain:"+"\n"+"[2, 1, 3, 4, 3, 2, 2, 3, 2, 2]");
+				}
+				if(filename.equals("Diabetes.BN")&&dom==false) {
+					textRes.setText("Please insert each variable within its domain:"+"\n"+"[2, 4, 2, 4, 3, 2, 2, 2]");
+				}
+				if(filename.equals("Hepatitis.BN")&&dom==false) {
+					textRes.setText("Please insert each variable within its domain:"+"\n"+"[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 3, 2, 2]");
+				}
+				if(filename.equals("Thyroid.BN")&&dom==false) {
+					textRes.setText("Please insert each variable within its domain:"+"\n"+"[3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 5]");
+				}
+				if(filename.equals("Other.BN")&&dom==false) {
+					textRes.setText("Please insert each variable within its domain.");
+				}
+				
 				}
 				}}}}
 				}
