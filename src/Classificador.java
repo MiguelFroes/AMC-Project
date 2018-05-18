@@ -196,9 +196,14 @@ public class Classificador {
 					e.printStackTrace();
 				}
 				
-				
+				try {
 				res=bn.prob(vector);
 				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
+				} catch (IndexOutOfBoundsException e) {
+				    System.out.println("Variables with domains not correct");
+				    textRes.setText("Please insert the correct domain for each variable");
+				}
+				
 				}}}}
 				}
 			}
