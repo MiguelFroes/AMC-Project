@@ -1,15 +1,10 @@
 import java.awt.Color;
-
-
 import java.awt.Component;
 import java.awt.EventQueue;
-
 import java.awt.FileDialog;
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -18,9 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -28,7 +21,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
-import javax.swing.ImageIcon;
 
 public class Aprendizagem {
 
@@ -133,7 +125,7 @@ public class Aprendizagem {
 				int[] domains=null; 
 				int numblines=0;
 			
-//Primeira leitura que percorre o ficheiro e forma o vetor de dominios e descobre as dimens�es da matriz
+//Primeira leitura que percorre o ficheiro e forma o vetor de dominios e descobre as dimensoes da matriz
 				if(filename==null)
 					textTeach.setText("Please choose a .csv file");
 				else {
@@ -157,7 +149,7 @@ public class Aprendizagem {
 						}
 					}
 					while((CurrentLine=br.readLine())!=null) { //Ciclo que vai percorrendo as restantes linhas do ficheiro
-						numblines++; //Permite descobrir a dimensao da matriz = dmiensao doo numero de linhas do ficheiro
+						numblines++; //Permite descobrir a dimensao da matriz = dimensao doo numero de linhas do ficheiro
 						line=CurrentLine.split(",");
 						for(int i=0;i<line.length;i++) { //Ciclo que transforma os dados dum vetor de strings para um vetor de inteiros para as restantes linhas
 							int x=Integer.parseInt(line[i]);
@@ -176,7 +168,7 @@ public class Aprendizagem {
 					domains[j]++;
 				}
 				System.out.println(Arrays.toString(domains));
-//Cria��o da amostra
+//Criacao da amostra
 				
 
 				matrix=new int[numblines][domains.length];
@@ -209,7 +201,7 @@ public class Aprendizagem {
 				}
 			
 				
-//Cria��o do Grafo Pesado
+//Criacao do Grafo Pesado
 				wg=new WGraph(domains.length-1); 
 					for(int i=0;i<domains.length-1;i++) { //O grafo pesado e construido obtenndo-se os pesos dos nos entre eles
 						for(int j=0;j<domains.length-1;j++) {
@@ -219,12 +211,12 @@ public class Aprendizagem {
 							}
 						}
 					}
-//Cria��o da MST
+//Criacao da MST
 				
 					mst=wg.MST(0);
 								
 				
-//Cria��o da rede de Bayes
+//Criacao da rede de Bayes
 				
 				bn=new BN(mst,am,0.5);
 				textTeach.setText("Ready to be saved");
@@ -242,7 +234,7 @@ public class Aprendizagem {
 		btnSave.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//De acordo com o JRadio Button Selecionado, o ficheiro vai ser guardado com o nome desse bot�o
+				//De acordo com o JRadio Button Selecionado, o ficheiro vai ser guardado com o nome desse botao
 				if(Cancer) {
 					parameter="Cancer";
 				}

@@ -23,15 +23,15 @@ public class DGraph implements Interface_DGraph,Serializable {
 	}
 
 
-	public int getDim() {//Getter da dimensão
+	public int getDim() {//Getter da dimensao
 		return dim;
 	}
 	
-	public void add_edge(int n1, int n2) {//Adiciona uma aresta entre os dois nós
+	public void add_edge(int n1, int n2) {//Adiciona uma aresta entre os dois nos
 		Dmtx[n1][n2]=1;
 	}
 	
-	public void remove_edge(int n1, int n2) {//Remove a aresta entre os nós
+	public void remove_edge(int n1, int n2) {//Remove a aresta entre os nos
 		Dmtx[n1][n2]=0;
 	}
 	
@@ -39,10 +39,10 @@ public class DGraph implements Interface_DGraph,Serializable {
 		return Dmtx[n1][n2]==1;	
 	}
 	
-	public LinkedList<Integer> parents(int n){//Devolve a lista de pais do nó n
+	public LinkedList<Integer> parents(int n){//Devolve a lista de pais do no n
 		LinkedList<Integer> lr = new LinkedList<Integer> ();
 		for (int j=0; j<dim; j++)
-			if (edgeQ(j,n))//É bloqueada a linha e procura se o nó j origina o nó n
+			if (edgeQ(j,n))//E bloqueada a linha e procura se o no j origina o no n
 				lr.add(j);
 		return lr;		
 	}

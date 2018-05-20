@@ -14,12 +14,11 @@ public class BN implements Interface_BN,Serializable{
 		int xi;
 		int c=A.element(0).length-1;
 		int cDomain=A.Domain(c);
-		//theta= new Double[D.getDim()+1][][];
-		theta= new LinkedList<Double[][]>(); 
-		for(xi=0;xi<D.getDim();xi++) { //Isto é def e nao funciona com o menor mas com o menor ou igual e -1 funciona, aceitei
+		theta= new LinkedList<Double[][]>(); //Lista onde sao guardados os tensores
+		for(xi=0;xi<D.getDim();xi++) { 
 			int xDomain=A.Domain(xi);
 			LinkedList<Integer> pi=D.parents(xi);
-			if(pi.size()==1) {
+			if(pi.size()==1) { //caso em que o no tem um pai para alem da classe - tensor de dimensao 3
 				int p=pi.getFirst();
 				int pDomain=A.Domain(p);
 				int prodDomain=pDomain*cDomain;
@@ -38,7 +37,7 @@ public class BN implements Interface_BN,Serializable{
 				theta.addLast(mt);
 				
 			}
-			if(pi.size()==0) {
+			if(pi.size()==0) { //caso em que apenas a classe e pai do no (porque a classe e pai de todos os nos) - tensor de dimensao 2
 				Double[][] mt=new Double[xDomain][cDomain];
 				for(int i=0;i<xDomain;i++) {
 					for(int ci=0;ci<cDomain;ci++) {
@@ -53,7 +52,7 @@ public class BN implements Interface_BN,Serializable{
 				
 			}
 		}
-		Double[][] mt=new Double[cDomain][1];
+		Double[][] mt=new Double[cDomain][1];//caso em que apenas se esta a considerar a classe - tensor de dimensao 1
 		for(int cj=0;cj<cDomain;cj++) {
 			int[] Varc={c};
 			int[] Valc={cj};

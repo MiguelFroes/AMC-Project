@@ -50,17 +50,17 @@ public class Amostra implements Interface_Amostra{
 		return dim;	
 	}
 	
-	public int count(int[] var, int[] val) {/*Recebe um vector de variáveis e um vector de valores e retorna o número de 
-							ocorrências desses valores para essas variáveis na amostra*/
+	public int count(int[] var, int[] val) {/*Recebe um vector de variaveis e um vector de valores e retorna o número de 
+							ocorrencias desses valores para essas variaveis na amostra*/
 		node runner=first;
 		int i=0, r=0;
 		boolean b;
-		while(runner!=null) {
+		while(runner!=null) { //Percorre os nos da amosta
 			b=true;
-			for(i=0;i<var.length;i++) {
-				b&=(runner.vector[var[i]]==val[i]);
+			for(i=0;i<var.length;i++) { //percorre as variaveis
+				b&=(runner.vector[var[i]]==val[i]); //verifica se os valores se encontram naquele no
 			}
-			if(b) r++;
+			if(b) r++; //Se se verificar, adiciona a contagem 1 
 			runner=runner.next;
 		}
 		return r;	
