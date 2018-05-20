@@ -9,7 +9,7 @@ public interface Interface_Amostra {
 	
 	public int[] element(int x);
 	
-	public int Domain(int n);/*Devolve o domínio do nó n, ou seja, quantos valores é que cada variável do 
-							 vetor do nó n pode tomar*/
+	public int Domain(int n);/*Devolve o dominio do no n, ou seja, quantos valores e que cada variável do 
+							 vetor do np n pode tomar*/
 
 }

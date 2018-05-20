@@ -35,12 +35,12 @@ public class Amostra implements Interface_Amostra{
 
 
 
-	public int Domain(int n) {//Devolve o domínio do nó n, ou seja, quantos valores é que cada variável do vetor do nó n pode tomar
+	public int Domain(int n) {//Devolve o dominio do no n, ou seja, quantos valores e que cada variavel do vetor do no n pode tomar
 		return domain[n];
 		
 	}
 	
-	public void add(int[] vector) {//Recebe um vetor e adiciona-o à amostra
+	public void add(int[] vector) {//Recebe um vetor e adiciona-o a amostra
 		node aux= new node(vector,first);
 		first=aux;
 		dim++;
@@ -50,7 +50,7 @@ public class Amostra implements Interface_Amostra{
 		return dim;	
 	}
 	
-	public int count(int[] var, int[] val) {/*Recebe um vector de variaveis e um vector de valores e retorna o número de 
+	public int count(int[] var, int[] val) {/*Recebe um vector de variaveis e um vector de valores e retorna o numero de 
 							ocorrencias desses valores para essas variaveis na amostra*/
 		node runner=first;
 		int i=0, r=0;
@@ -66,7 +66,7 @@ public class Amostra implements Interface_Amostra{
 		return r;	
 	}
 	
-	public int[] element(int x) {//Devolve o vetor do nó x
+	public int[] element(int x) {//Devolve o vetor do no x
 		int i;
 		node runner=first;
 		for(i=0;i<x;i++) {

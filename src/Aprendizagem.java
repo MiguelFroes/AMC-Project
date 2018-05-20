@@ -71,7 +71,7 @@ public class Aprendizagem {
 		frame = new JFrame();
 		frame.setTitle("Learning application");
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
-		frame.setBounds(100, 100, 567, 357);
+		frame.setBounds(100, 100, 567, 373);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
