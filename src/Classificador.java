@@ -70,7 +70,7 @@ public class Classificador {
 		frame = new JFrame();
 		frame.setTitle("Classification application");
 		frame.getContentPane().setBackground(new Color(240, 255, 255));
-		frame.setBounds(600, 400, 1036, 699);
+		frame.setBounds(600, 400, 1063, 699);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -261,7 +261,7 @@ public class Classificador {
 		
 		JLabel lblNumberOfParameters = new JLabel("Number of parameters of the known diseases:");
 		lblNumberOfParameters.setFont(new Font("Adobe Gothic Std", Font.BOLD, 16));
-		lblNumberOfParameters.setBounds(663, 88, 341, 76);
+		lblNumberOfParameters.setBounds(663, 88, 351, 76);
 		frame.getContentPane().add(lblNumberOfParameters);
 		
 		JLabel lblCancer = new JLabel("Cancer: 10");
