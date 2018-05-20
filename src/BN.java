@@ -7,7 +7,7 @@ public class BN implements Interface_BN,Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected DGraph dg;//grafo orientado resultante do MST que necessita estar guardado
-	protected LinkedList <Double[][]> theta;//fun��o de probabilade 
+	protected LinkedList <Double[][]> theta;//funcao de probabilade 
 	
 	public BN(DGraph D, Amostra A, double S) {
 		dg=D;

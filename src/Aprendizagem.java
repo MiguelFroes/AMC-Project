@@ -19,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class Aprendizagem {
@@ -102,7 +101,7 @@ public class Aprendizagem {
 				else 
 					System.out.println("File selected: " + filename);
 				database = fd.getDirectory()+filename; //Variavel que guarda o caminho do ficheiro selecionado
-				textField.setText(filename); //Nome do ficheiro aparece na aplica��o  na caixa de texto junto ao bot�o choose me
+				textField.setText(filename); //Nome do ficheiro aparece na aplicacao  na caixa de texto junto ao botao choose me
 				
 			}
 		});
@@ -167,7 +166,6 @@ public class Aprendizagem {
 				for(int j=0;j<domains.length;j++) { //Adiciona 1 a todos os elementos do dominio (uma vez que atraves do maximo nao se tem em conta o elemento 0)
 					domains[j]++;
 				}
-				System.out.println(Arrays.toString(domains));
 //Criacao da amostra
 				
 
@@ -194,7 +192,7 @@ public class Aprendizagem {
 					e1.printStackTrace();
 				}
 				
-				am= new Amostra(domains); //Controi a amostra
+				am= new Amostra(domains); //Constroi a amostra
 				
 				for(int i=0;i<matrix.length;i++) { //Adiciona a informacao contida na matriz na amostra 
 					am.add(matrix[i]);

@@ -220,7 +220,7 @@ public class Classificador {
 				res.add(indice);
 				res.add(max);
 				//res e uma linked list que contem a classe com maior probabilidade e qual a probabilidade obtida por essa classe
-				textRes.setText(String.format("The most likely class is %d with the probability of %.2f %%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
+				textRes.setText(String.format("The most likely class is %d with the probability of %.2f%%", res.get(0).intValue(),res.get(1) )); //Devolve o resultado na caixa de texto junto ao botao classify
 				} catch (IndexOutOfBoundsException e) {//O programa da um erro deste tipo se se inserir no vetor de parametros um numero que esta fora do dominio da variavel
 					dom=false;	
 				}
@@ -237,7 +237,7 @@ public class Classificador {
 					textRes.setText("Please insert each variable within its domain:"+"\n"+"[3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 5]");
 				}
 				if(filename.equals("Other.BN")&&dom==false) {
-					textRes.setText("Please insert the correct number oeach variable within its domain.");
+					textRes.setText("Please insert each variable within its domain.");
 				}
 				
 				}
